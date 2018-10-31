@@ -1205,10 +1205,10 @@ public class Ventana {
 		panelUsabilidad.add(radioExcelente_5C);
 		grupoUsaC.add(radioExcelente_5C);
 		*/
-		JLabel label_1 = new JLabel("<html><body>Porcentaje de comentarios en el codigo</body><html>");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		label_1.setBounds(437, 358, 405, 57);
-		panelUsabilidad.add(label_1);
+		JLabel lblcapacidadDelUsuario = new JLabel("<html><body>Capacidad del Usuario de operar el Producto Software</body><html>");
+		lblcapacidadDelUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblcapacidadDelUsuario.setBounds(437, 358, 405, 57);
+		panelUsabilidad.add(lblcapacidadDelUsuario);
 		
 		JLabel lblpasosRequeridosPor = new JLabel("<html><body>Cantidad de pasos para realizar una operaci\u00F3n</body><html>");
 		lblpasosRequeridosPor.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -1285,8 +1285,6 @@ public class Ventana {
 		
 		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setSelectedIndex(-1);
-		comboBox.addItem("SI");
-		comboBox.addItem("NO");
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboBox_1.setBounds(1018, 386, 69, 33);
 		panelUsabilidad.add(comboBox_1);
