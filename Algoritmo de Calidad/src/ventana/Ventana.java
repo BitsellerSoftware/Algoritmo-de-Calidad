@@ -34,6 +34,8 @@ import javax.swing.JToggleButton;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.Dimension;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Ventana {
 
@@ -51,6 +53,12 @@ public class Ventana {
 	private ButtonGroup grupoUsaC = new ButtonGroup();
 	private ButtonGroup grupoPorA = new ButtonGroup();
 	private ButtonGroup grupoPorB = new ButtonGroup();
+	private ButtonGroup grupoFia_A = new ButtonGroup();
+	private ButtonGroup grupoFia_B = new ButtonGroup();
+	private ButtonGroup grupoUsa_A1 = new ButtonGroup();
+	private ButtonGroup grupoUsa_A2 = new ButtonGroup();
+	private ButtonGroup grupoUsa_A3 = new ButtonGroup();
+	
 
 	
 	
@@ -61,6 +69,17 @@ public class Ventana {
 	static int usa = 0;
 	static int por = 0;
 	int msg;
+	private JTextField textField_1A;
+	private JTextField txt_2A;
+	private JTextField txt_2B;
+	private JTextField txt_3A;
+	private JTextField txt_3B;
+	private JTextField txt_4A;
+	private JTextField txt_4B;
+	private JTextField txt_4C;
+	private JTextField txt_5;
+	private JTextField txt_6A;
+	private JTextField txt_6B;
 
 	/**
 	 * Launch the application.
@@ -238,6 +257,7 @@ public class Ventana {
 		//FUNCIONALIDAD
 		//FUNCIONALIDAD
 		
+		
 		JLabel lblFuncionalidad = new JLabel("FUNCIONALIDAD");
 		lblFuncionalidad.setBackground(Color.WHITE);
 		lblFuncionalidad.setHorizontalAlignment(SwingConstants.CENTER);
@@ -281,22 +301,42 @@ public class Ventana {
 		rdbtnMala1A.setActionCommand("Mala");
 		grupoFunA.add(rdbtnMala1A);
 		*/
+		textField_1A = new JTextField(3);
+		textField_1A.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				char c = arg0.getKeyChar();
+				if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE ){
+					arg0.consume();
+				}
+			}
+		});
+		textField_1A.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textField_1A.setBounds(600, 412, 55, 20);
+		panelFuncionalidad.add(textField_1A);
+		textField_1A.setColumns(10);
+		
 		JButton btnSiguiente1A = new JButton("Siguiente");
 		btnSiguiente1A.setBounds(1100, 641, 164, 39);
 		panelFuncionalidad.add(btnSiguiente1A);
 		btnSiguiente1A.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(grupoFunA.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
+				if(textField_1A.getText().isEmpty())
+					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
+				if(Integer.parseInt(textField_1A.getText()) == 100) {
+					fun++;
+				}
+				/*if(grupoFunA.isSelected(null)){
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
 				}
 				if(grupoFunA.getSelection().getActionCommand() == "Mala") {
 //					lblRes_FUN.setText("NO SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.red);
 					fun++;
-				}
+				}*/
 				panelEficiencia.setVisible(true);
 				panelFuncionalidad.setVisible(false);
-				//System.out.println("al final de la primera funcionalidad =" + fun);	
+				System.out.println("al final de la primera funcionalidad =" + fun);	
 				
 			}
 		});
@@ -314,7 +354,7 @@ public class Ventana {
 		JButton btnCancelar1A = new JButton("Cancelar");
 		btnCancelar1A.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 				panel_Inicio.setVisible(true);
 				panelFuncionalidad.setVisible(false);}
@@ -328,22 +368,7 @@ public class Ventana {
 		lblExactitudDeLos.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		lblExactitudDeLos.setBounds(10, 147, 1254, 74);
 		panelFuncionalidad.add(lblExactitudDeLos);
-		
-		textField_1A = new JTextField(3);
-		// segun stack overflow no hay que hacerlo asi porque no se que, hay que usar DocumentFilter
-		textField_1A.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				char c = arg0.getKeyChar();
-				if(!(Character.isDigit(c)) || c==KeyEvent.VK_BACK_SPACE || c==KeyEvent.VK_DELETE ){
-					arg0.consume();
-				}
-			}
-		});
-		textField_1A.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_1A.setBounds(600, 412, 55, 20);
-		panelFuncionalidad.add(textField_1A);
-		textField_1A.setColumns(10);
+				
 		
 		JLabel lblPorcentajeDeVeces = new JLabel("<html><body>Porcentaje de veces que produce errores al realizar opreaciones</body><html>");
 		lblPorcentajeDeVeces.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -361,12 +386,12 @@ public class Ventana {
 		labelEficiencia.setBackground(Color.WHITE);
 		panelEficiencia.add(labelEficiencia);
 		
-		JLabel labelDescEficiencia_A = new JLabel("Utilizaci贸n de recursos");
+		JLabel labelDescEficiencia_A = new JLabel("Utilizaci髇 de recursos");
 		labelDescEficiencia_A.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		labelDescEficiencia_A.setHorizontalAlignment(SwingConstants.CENTER);
 		labelDescEficiencia_A.setBounds(10, 106, 634, 119);
 		panelEficiencia.add(labelDescEficiencia_A);
-		
+		/*
 		JRadioButton radioExcelente_Eficiencia_A = new JRadioButton("Excelente");
 		radioExcelente_Eficiencia_A.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioExcelente_Eficiencia_A.setToolTipText("menos de 5% de uso de CPU");
@@ -395,13 +420,13 @@ public class Ventana {
 		radioMala_Eficiencia_A.setActionCommand("Mala");
 		panelEficiencia.add(radioMala_Eficiencia_A);
 		grupoEfiA.add(radioMala_Eficiencia_A);
-		
+		*/
 		JLabel labelDescEficiencia_B = new JLabel("<html><body>Comportamiento frente<br>al tiempo</body></html>");
 		labelDescEficiencia_B.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		labelDescEficiencia_B.setHorizontalAlignment(SwingConstants.CENTER);
 		labelDescEficiencia_B.setBounds(655, 106, 599, 101);
 		panelEficiencia.add(labelDescEficiencia_B);
-		
+		/*
 		JRadioButton radioMala_Eficiencia_B = new JRadioButton("Mala");
 		radioMala_Eficiencia_B.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioMala_Eficiencia_B.setToolTipText("El producto est\u00E1 m\u00E1s de 6 segundos para informar al usuario del estado de la operaci\u00F3n");
@@ -430,6 +455,28 @@ public class Ventana {
 		radioBuena_Eficiencia_B.setBounds(883, 399, 130, 44);
 		panelEficiencia.add(radioBuena_Eficiencia_B);
 		grupoEfiB.add(radioBuena_Eficiencia_B);
+		*/
+		
+		JLabel lblporcentajeDeUso = new JLabel("<html><body>Porcentaje de uso de CPU utilizado</body><html>");
+		lblporcentajeDeUso.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblporcentajeDeUso.setBounds(91, 286, 405, 57);
+		panelEficiencia.add(lblporcentajeDeUso);
+		
+		txt_2A = new JTextField(10);
+		txt_2A.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_2A.setBounds(274, 354, 55, 20);
+		panelEficiencia.add(txt_2A);
+		
+		JLabel lbltiempoEnSegundos = new JLabel("<html><body>Tiempo en segundos que demora en  informar el resultado</body><html>");
+		lbltiempoEnSegundos.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lbltiempoEnSegundos.setBounds(785, 305, 405, 57);
+		panelEficiencia.add(lbltiempoEnSegundos);
+		
+		txt_2B = new JTextField(10);
+		txt_2B.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_2B.setBounds(968, 373, 55, 20);
+		panelEficiencia.add(txt_2B);
+		
 		
 		JButton btnAtras_2A_ = new JButton("Atras");
 		btnAtras_2A_.addActionListener(new ActionListener() {
@@ -447,8 +494,17 @@ public class Ventana {
 		JButton btnSiguiente_2A_ = new JButton("Siguiente");
 		btnSiguiente_2A_.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					if(grupoEfiA.isSelected(null) || grupoEfiB.isSelected(null)){
-						JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
+				if(txt_2A.getText().isEmpty() || txt_2B.getText().isEmpty())
+					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
+				if(Integer.parseInt(txt_2A.getText()) >= 39) {
+					efi++;
+				}
+				if(Integer.parseInt(txt_2B.getText()) > 6) {
+					efi++;
+				}
+				
+					/*if(grupoEfiA.isSelected(null) || grupoEfiB.isSelected(null)){
+						JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
 					}
 					else {
 				if(grupoEfiA.getSelection().getActionCommand() == "Mala") {
@@ -460,12 +516,13 @@ public class Ventana {
 //					label_Res_EFI.setText("NO SATISFACTORIO");
 //					label_Res_EFI.setBackground(Color.RED);
 					efi++;
-				}
+				}*/
 				panelEficiencia.setVisible(false);
 				panelFiabilidad.setVisible(true);
 				//System.out.println("al final de la segunda funcionalidad =" + fun);
 				//System.out.println("al final de la segunda eficiencia =" +efi);
-			}}
+			//}
+			}
 		});
 		btnSiguiente_2A_.setBounds(1107, 641, 157, 39);
 		panelEficiencia.add(btnSiguiente_2A_);
@@ -473,7 +530,7 @@ public class Ventana {
 		JButton btnCancelar_2A = new JButton("Cancelar");
 		btnCancelar_2A.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
@@ -513,7 +570,7 @@ public class Ventana {
 		separator_5.setBackground(Color.BLACK);
 		separator_5.setBounds(0, 628, 1274, 2);
 		panelEficiencia.add(separator_5);
-				
+						
 		// FIABILIDAD
 		// FIABILIDAD
 		// FIABILIDAD
@@ -537,7 +594,7 @@ public class Ventana {
 		labelDescFiaB.setHorizontalAlignment(SwingConstants.CENTER);
 		labelDescFiaB.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		panelFiabilidad.add(labelDescFiaB);
-		
+		/*
 		JRadioButton radioExcelente_3A = new JRadioButton("Excelente");
 		radioExcelente_3A.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioExcelente_3A.setToolTipText("Cumple con las 2  caracter\u00EDsticas.");
@@ -595,13 +652,65 @@ public class Ventana {
 		radioRegular_3B.setBounds(883, 466, 130, 44);
 		panelFiabilidad.add(radioRegular_3B);
 		grupoFiaB.add(radioRegular_3B);
+		*/
+
+		JLabel lblporcentajeDeDatos = new JLabel("<html><body>Porcentaje de datos que se protegen</body><html>");
+		lblporcentajeDeDatos.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblporcentajeDeDatos.setBounds(138, 343, 405, 57);
+		panelFiabilidad.add(lblporcentajeDeDatos);
 		
+		txt_3A = new JTextField(10);
+		txt_3A.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_3A.setBounds(321, 411, 55, 20);
+		panelFiabilidad.add(txt_3A);
+		
+		JLabel lblporcentajeDeVeces = new JLabel("<html><body>Porcentaje de veces en las que reanuda sus actividades luego producirse una falla</body><html>");
+		lblporcentajeDeVeces.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblporcentajeDeVeces.setBounds(754, 343, 405, 57);
+		panelFiabilidad.add(lblporcentajeDeVeces);
+		
+		txt_3B = new JTextField(10);
+		txt_3B.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_3B.setBounds(937, 411, 55, 20);
+		panelFiabilidad.add(txt_3B);
+		
+		JLabel lblrealizaUnLog = new JLabel("<html><body>\u00BFRealiza un log de actividades en el sistema?</body><html>");
+		lblrealizaUnLog.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblrealizaUnLog.setBounds(138, 442, 405, 57);
+		panelFiabilidad.add(lblrealizaUnLog);
+		
+		JRadioButton rdbtnSi = new JRadioButton("SI");
+		rdbtnSi.setBounds(148, 506, 109, 23);
+		panelFiabilidad.add(rdbtnSi);
+		grupoFia_A.add(rdbtnSi);
+		
+		JRadioButton rdbtnNo = new JRadioButton("NO");
+		rdbtnNo.setBounds(375, 506, 109, 23);
+		rdbtnNo.setActionCommand("Mala");
+		panelFiabilidad.add(rdbtnNo);
+		grupoFia_A.add(rdbtnNo);
+		
+		JRadioButton radioButton = new JRadioButton("NO");
+		radioButton.setBounds(973, 506, 109, 23);
+		panelFiabilidad.add(radioButton);
+		radioButton.setActionCommand("Mala");
+		grupoFia_B.add(radioButton);
+		
+		JRadioButton radioButton_1 = new JRadioButton("SI");
+		radioButton_1.setBounds(746, 506, 109, 23);
+		panelFiabilidad.add(radioButton_1);
+		grupoFia_B.add(radioButton_1);
+		
+		JLabel lblvuelveASu = new JLabel("<html><body>\u00BFVuelve a su estado anterior?</body><html>");
+		lblvuelveASu.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblvuelveASu.setBounds(736, 442, 405, 57);
+		panelFiabilidad.add(lblvuelveASu);
 		
 		JButton btnAtras_3 = new JButton("Atras");
 		btnAtras_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				panelFiabilidad.setVisible(false);
-//				panelEficiencia.setVisible(true);
+				panelFiabilidad.setVisible(false);
+				panelEficiencia.setVisible(true);
 //				label_Res_EFI.setText("SATISFACTORIO");
 //				label_Res_EFI.setBackground(Color.GREEN);
 				efi = 0;
@@ -613,8 +722,16 @@ public class Ventana {
 		JButton btnSiguiente_3 = new JButton("Siguiente");
 		btnSiguiente_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(grupoFiaA.isSelected(null) || grupoFiaB.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
+				if(txt_3A.getText().isEmpty() || txt_3B.getText().isEmpty())
+					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
+				if(Integer.parseInt(txt_3A.getText()) <= 100 || grupoFia_A.getSelection().getActionCommand() == "Mala") {
+					fia++;
+				}
+				if(Integer.parseInt(txt_2B.getText()) == 0) {
+					fia++;
+				}
+				/*if(grupoFiaA.isSelected(null) || grupoFiaB.isSelected(null)){
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
 				}
 				else {
 			if(grupoFiaA.getSelection().getActionCommand() == "Mala") {
@@ -627,7 +744,7 @@ public class Ventana {
 //				label_Res_FIA.setText("NO SATISFACTORIO");
 //				label_Res_FIA.setBackground(Color.red);
 				fia++;
-			}
+			}*/
 			panelMantenibilidad.setVisible(true);
 			panelFiabilidad.setVisible(false);
 			/*System.out.println("al final de la tercera funcionalidad =" +fun);
@@ -635,14 +752,15 @@ public class Ventana {
 			System.out.println("al final de la tercera fiabilidad =" + fia);*/
 				
 			}
-			}});
+		//	}
+		});
 		btnSiguiente_3.setBounds(1107, 641, 157, 39);
 		panelFiabilidad.add(btnSiguiente_3);
 		
 		JButton btnCancelar_3 = new JButton("Cancelar");
 		btnCancelar_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					label_Res_EFI.setText("SATISFACTORIO");
 //					label_Res_EFI.setBackground(Color.GREEN);
@@ -685,6 +803,7 @@ public class Ventana {
 		separator_8.setBounds(0, 627, 1274, 2);
 		panelFiabilidad.add(separator_8);
 		
+		
 		//MANTENIBILIDAD
 		//MANTENIBILIDAD
 		//MANTENIBILIDAD
@@ -707,7 +826,7 @@ public class Ventana {
 		lblparaEvaluarLa.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblparaEvaluarLa.setBounds(10, 206, 426, 90);
 		panelMantenibilidad.add(lblparaEvaluarLa);
-		
+		/*
 		JRadioButton radioExcelente_4A = new JRadioButton("Excelente");
 		radioExcelente_4A.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioExcelente_4A.setToolTipText("m\u00E1s del 55% del c\u00F3digo comentado");
@@ -736,7 +855,7 @@ public class Ventana {
 		radioMala_4A.setBounds(166, 513, 130, 45);
 		panelMantenibilidad.add(radioMala_4A);
 		grupoManA.add(radioMala_4A);
-			
+			*/
 		JLabel lblDescMantenibilidad_B = new JLabel("<html><body>Capacidad del codigo para ser cambiado</body></html>");
 		lblDescMantenibilidad_B.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDescMantenibilidad_B.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -748,7 +867,7 @@ public class Ventana {
 		lblparaEvaluarLa_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblparaEvaluarLa_1.setBounds(437, 206, 426, 90);
 		panelMantenibilidad.add(lblparaEvaluarLa_1);
-		
+		/*
 		JRadioButton radioExcelente_4B = new JRadioButton("Excelente");
 		radioExcelente_4B.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioExcelente_4B.setToolTipText("La complejidad ciclom\u00E1tica es menor o igual a 5.");
@@ -777,7 +896,7 @@ public class Ventana {
 		radioMala_4B.setBounds(592, 513, 130, 44);
 		panelMantenibilidad.add(radioMala_4B);
 		grupoManB.add(radioMala_4B);
-				
+			*/	
 		JLabel lblestabilidad = new JLabel("<html><body>Estabilidad</body></html>");
 		lblestabilidad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblestabilidad.setFont(new Font("Tahoma", Font.PLAIN, 40));
@@ -789,7 +908,7 @@ public class Ventana {
 		lblparaDeterminarLa.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblparaDeterminarLa.setBounds(863, 206, 426, 90);
 		panelMantenibilidad.add(lblparaDeterminarLa);
-		
+		/*
 		JRadioButton radioExcelente_4C = new JRadioButton("Excelente");
 		radioExcelente_4C.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioExcelente_4C.setToolTipText("El software presenta un promedio entre 0 y 2 errores por prueba.");
@@ -818,11 +937,43 @@ public class Ventana {
 		radioRegular_4C.setBounds(1018, 453, 130, 44);
 		panelMantenibilidad.add(radioRegular_4C);
 		grupoManC.add(radioRegular_4C);
-			
+			*/
+		
+
+		txt_4A = new JTextField(10);
+		txt_4A.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_4A.setBounds(193, 408, 55, 20);
+		panelMantenibilidad.add(txt_4A);
+		
+		JLabel lblcomplejidadCiclomatica = new JLabel("<html><body>Complejidad Ciclomatica</body><html>");
+		lblcomplejidadCiclomatica.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblcomplejidadCiclomatica.setBounds(437, 340, 405, 57);
+		panelMantenibilidad.add(lblcomplejidadCiclomatica);
+		
+		txt_4B = new JTextField(10);
+		txt_4B.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_4B.setBounds(620, 408, 55, 20);
+		panelMantenibilidad.add(txt_4B);
+		
+		JLabel lblcantidadDeFallas = new JLabel("<html><body>Cantidad de fallas por prueba</body><html>");
+		lblcantidadDeFallas.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblcantidadDeFallas.setBounds(863, 340, 405, 57);
+		panelMantenibilidad.add(lblcantidadDeFallas);
+		
+		txt_4C = new JTextField(10);
+		txt_4C.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_4C.setBounds(1046, 408, 55, 20);
+		panelMantenibilidad.add(txt_4C);
+		
+		JLabel lblporcentajeDeComentarios = new JLabel("<html><body>Porcentaje de comentarios en el codigo</body><html>");
+		lblporcentajeDeComentarios.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblporcentajeDeComentarios.setBounds(10, 340, 405, 57);
+		panelMantenibilidad.add(lblporcentajeDeComentarios);
+		
 		JButton btnCancelar_4 = new JButton("Cancelar");
 		btnCancelar_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
@@ -841,8 +992,8 @@ public class Ventana {
 		JButton btnAtras_4 = new JButton("Atras");
 		btnAtras_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				panelFiabilidad.setVisible(true);
-//				panelMantenibilidad.setVisible(false);
+				panelFiabilidad.setVisible(true);
+				panelMantenibilidad.setVisible(false);
 //				label_Res_FIA.setText("SATISFACTORIO");
 //				label_Res_FIA.setBackground(Color.GREEN);
 				fia = 0;
@@ -854,8 +1005,20 @@ public class Ventana {
 		JButton BtnSiguiente_4 = new JButton("Siguiente");
 		BtnSiguiente_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(grupoManA.isSelected(null) || grupoManB.isSelected(null) || grupoManC.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
+				if(txt_4A.getText().isEmpty() || txt_4B.getText().isEmpty() || txt_4C.getText().isEmpty())
+					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
+				if(Integer.parseInt(txt_4A.getText()) <= 20){
+					man++;
+				}
+				if(Integer.parseInt(txt_4B.getText()) >= 21) {
+					man++;
+				}
+				if(Integer.parseInt(txt_4C.getText()) >= 5) {
+					man++;
+				}
+				
+				/*if(grupoManA.isSelected(null) || grupoManB.isSelected(null) || grupoManC.isSelected(null)){
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
 				}
 				else {
 			if(grupoManA.getSelection().getActionCommand() == "Mala") {
@@ -872,10 +1035,10 @@ public class Ventana {
 //				label_Res_MAN.setText("NO SATISFACTORIO");
 //				label_Res_MAN.setBackground(Color.red);
 				man++;
-			}
+			}*/
 			panelMantenibilidad.setVisible(false);
 			panelUsabilidad.setVisible(true);
-			}
+			//}
 			}
 		});
 		BtnSiguiente_4.setBounds(1107, 641, 157, 39);
@@ -907,6 +1070,7 @@ public class Ventana {
 		separator_12.setBounds(852, 95, 2, 535);
 		panelMantenibilidad.add(separator_12);
 		
+		
 		//USABILIDAD
 		//USABILIDAD
 		//USABILIDAD
@@ -928,7 +1092,7 @@ public class Ventana {
 		lblcapacidadQuePosee.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblcapacidadQuePosee.setBounds(10, 206, 411, 100);
 		panelUsabilidad.add(lblcapacidadQuePosee);
-		
+		/*
 		JRadioButton radioBuena_5A = new JRadioButton("Buena");
 		radioBuena_5A.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioBuena_5A.setToolTipText("Cumple con 2 caracter\u00EDsticas.");
@@ -988,7 +1152,7 @@ public class Ventana {
 		radioBuena_5B.setBounds(592, 393, 147, 44);
 		panelUsabilidad.add(radioBuena_5B);
 		grupoUsaB.add(radioBuena_5B);
-		
+		*/
 		JLabel lblesLaCapacidad_2 = new JLabel("<html><body>Es la Capacidad del producto software de ser utilizado sin asistencia adicional. Se val\u00FAa que requiere el usuario para operar correctamente el producto.</body></html>\r\n");
 		lblesLaCapacidad_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblesLaCapacidad_2.setBounds(437, 206, 426, 90);
@@ -1011,7 +1175,7 @@ public class Ventana {
 		lblesLaAgrupacin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblesLaAgrupacin.setBounds(863, 206, 401, 90);
 		panelUsabilidad.add(lblesLaAgrupacin);
-		
+		/*
 		JRadioButton radioRegular_5C = new JRadioButton("Regular");
 		radioRegular_5C.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioRegular_5C.setToolTipText("Entre 6 y 8 pasos promedio y distribuidos en categor\u00EDas.");
@@ -1040,11 +1204,98 @@ public class Ventana {
 		radioExcelente_5C.setBounds(1018, 333, 147, 44);
 		panelUsabilidad.add(radioExcelente_5C);
 		grupoUsaC.add(radioExcelente_5C);
+		*/
+		JLabel label_1 = new JLabel("<html><body>Porcentaje de comentarios en el codigo</body><html>");
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		label_1.setBounds(437, 358, 405, 57);
+		panelUsabilidad.add(label_1);
+		
+		JLabel lblpasosRequeridosPor = new JLabel("<html><body>Cantidad de pasos para realizar una operaci\u00F3n</body><html>");
+		lblpasosRequeridosPor.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblpasosRequeridosPor.setBounds(863, 435, 405, 57);
+		panelUsabilidad.add(lblpasosRequeridosPor);
+		
+		txt_5 = new JTextField(10);
+		txt_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_5.setBounds(1018, 500, 55, 20);
+		panelUsabilidad.add(txt_5);
+		
+		JLabel lblposeeAyudaContextual = new JLabel("<html><body>\u00BFPosee ayuda contextual sobre men\u00FAs y botones de acci\u00F3n?</body><html>");
+		lblposeeAyudaContextual.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblposeeAyudaContextual.setBounds(10, 328, 405, 57);
+		panelUsabilidad.add(lblposeeAyudaContextual);
+		
+		JRadioButton rbtn_5A_1_SI = new JRadioButton("SI");
+		rbtn_5A_1_SI.setBounds(20, 392, 109, 23);
+		panelUsabilidad.add(rbtn_5A_1_SI);
+		grupoUsa_A1.add(rbtn_5A_1_SI);
+		
+		JRadioButton rbtn_5A_1_NO = new JRadioButton("NO");
+		rbtn_5A_1_NO.setActionCommand("Mala");
+		rbtn_5A_1_NO.setBounds(247, 392, 109, 23);
+		panelUsabilidad.add(rbtn_5A_1_NO);
+		grupoUsa_A1.add(rbtn_5A_1_NO);
+		
+		JRadioButton rbtn_5A_2_SI = new JRadioButton("SI");
+		rbtn_5A_2_SI.setBounds(26, 497, 109, 23);
+		panelUsabilidad.add(rbtn_5A_2_SI);
+		grupoUsa_A2.add(rbtn_5A_2_SI);
+		
+		JRadioButton rbtn_5A_2_NO = new JRadioButton("NO");
+		rbtn_5A_2_NO.setActionCommand("Mala");
+		rbtn_5A_2_NO.setBounds(253, 497, 109, 23);
+		panelUsabilidad.add(rbtn_5A_2_NO);
+		grupoUsa_A2.add(rbtn_5A_2_NO);
+		
+		JLabel lblposeeManualDe = new JLabel("<html><body>\u00BFPosee Manual de usuario incorporado al sistema como un men\u00FA dedicado?</body><html>");
+		lblposeeManualDe.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblposeeManualDe.setBounds(16, 433, 405, 57);
+		panelUsabilidad.add(lblposeeManualDe);
+		
+		JLabel lblposeeAyudasComplementarias = new JLabel("<html><body>\u00BFposee ayudas complementarias aparte de las dos anteriores?</body><html>");
+		lblposeeAyudasComplementarias.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblposeeAyudasComplementarias.setBounds(10, 523, 405, 57);
+		panelUsabilidad.add(lblposeeAyudasComplementarias);
+		
+		JRadioButton rbtn_5A_3_SI = new JRadioButton("SI");
+		rbtn_5A_3_SI.setBounds(20, 587, 109, 23);
+		panelUsabilidad.add(rbtn_5A_3_SI);
+		grupoUsa_A3.add(rbtn_5A_3_SI);
+		
+		JRadioButton rbtn_5A_3_NO = new JRadioButton("NO");
+		rbtn_5A_3_NO.setActionCommand("Mala");
+		rbtn_5A_3_NO.setBounds(247, 587, 109, 23);
+		panelUsabilidad.add(rbtn_5A_3_NO);
+		grupoUsa_A3.add(rbtn_5A_3_NO);
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		comboBox.addItem("El usuario opera el producto software sin asistencia.");
+		comboBox.addItem("El usuario requiere solo ayuda contextual para operar el producto software.");
+		comboBox.addItem("El usuario requiere ayuda contextual y manual de uso para operar el producto.");
+		comboBox.addItem("El usuario requiere consultar a personal especializado para operar el producto.");
+		comboBox.setSelectedIndex(-1);
+		comboBox.setBounds(437, 443, 405, 47);
+		panelUsabilidad.add(comboBox);	
+		
+		JLabel lbllaInstalacionEsta = new JLabel("<html><body>\u00BFLa interfaz grafica presenta categorias?</body><html>");
+		lbllaInstalacionEsta.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lbllaInstalacionEsta.setBounds(863, 317, 405, 57);
+		panelUsabilidad.add(lbllaInstalacionEsta);
+		
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1.setSelectedIndex(-1);
+		comboBox.addItem("SI");
+		comboBox.addItem("NO");
+		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		comboBox_1.setBounds(1018, 386, 69, 33);
+		panelUsabilidad.add(comboBox_1);
+		
 		
 		JButton btn_Cancelar_5 = new JButton("Cancelar");
 		btn_Cancelar_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
@@ -1065,8 +1316,8 @@ public class Ventana {
 		JButton btn_Atras_5 = new JButton("Atras");
 		btn_Atras_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				panelUsabilidad.setVisible(false);
-//				panelMantenibilidad.setVisible(true);
+				panelUsabilidad.setVisible(false);
+				panelMantenibilidad.setVisible(true);
 //				label_Res_MAN.setText("SATISFACTORIO");
 //				label_Res_MAN.setBackground(Color.GREEN);
 				man = 0;
@@ -1078,8 +1329,19 @@ public class Ventana {
 		JButton btn_Sigueinte_5 = new JButton("Siguiente");
 		btn_Sigueinte_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(grupoUsaA.isSelected(null) || grupoUsaB.isSelected(null) || grupoUsaC.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
+				if(grupoUsa_A1.isSelected(null) || grupoUsa_A2.isSelected(null) || grupoUsa_A3.isSelected(null) || comboBox.getSelectedIndex() < 0 || txt_5.getText().isEmpty())
+					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
+				else {if(grupoUsa_A1.getSelection().getActionCommand() == "Mala" && grupoUsa_A2.getSelection().getActionCommand() == "Mala"){
+					usa++;
+				}
+				if(comboBox.getSelectedItem() == "El usuario requiere consultar a personal especializado para operar el producto.") {
+					usa++;
+				}	
+				if(Integer.parseInt(txt_5.getText()) > 8) {
+					usa++;
+				}
+				/*if(grupoUsaA.isSelected(null) || grupoUsaB.isSelected(null) || grupoUsaC.isSelected(null)){
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
 				}
 				else {
 			if(grupoUsaA.getSelection().getActionCommand() == "Mala") {
@@ -1096,7 +1358,7 @@ public class Ventana {
 //				label_Res_USA.setText("NO SATISFACTORIO");
 //				label_Res_USA.setBackground(Color.RED);
 				usa++;
-			}
+			}*/
 			panelPortabilidad.setVisible(true);
 			panelUsabilidad.setVisible(false);
 			}
@@ -1131,6 +1393,8 @@ public class Ventana {
 		separator_16.setBounds(852, 95, 2, 535);
 		panelUsabilidad.add(separator_16);
 		
+		
+		
 		//PORTABILIDAD
 		//PORTABILIDAD
 		//PORTABILIDAD
@@ -1163,7 +1427,7 @@ public class Ventana {
 		lblDesc_6A.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		lblDesc_6A.setBounds(10, 106, 634, 119);
 		panelPortabilidad.add(lblDesc_6A);
-		
+		/*
 		JRadioButton radioExcelente_6A = new JRadioButton("Excelente");
 		radioExcelente_6A.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		radioExcelente_6A.setToolTipText("compatible con 4 o m\u00E1s sistemas operativos");
@@ -1221,12 +1485,21 @@ public class Ventana {
 		radioExcelente_6B.setBounds(883, 334, 206, 44);
 		panelPortabilidad.add(radioExcelente_6B);
 		grupoPorB.add(radioExcelente_6B);
-		
+		*/
 		JButton btn_Siguiente_6 = new JButton("Siguiente");
 		btn_Siguiente_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(grupoPorA.isSelected(null) || grupoPorB.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
+				if(txt_6A.getText().isEmpty() || txt_6B.getText().isEmpty())
+					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
+				if(Integer.parseInt(txt_6A.getText()) == 1) {
+					por++;
+				}
+				if(Integer.parseInt(txt_2B.getText()) > 7) {
+					por++;
+				}
+				
+			/*	if(grupoPorA.isSelected(null) || grupoPorB.isSelected(null)){
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
 				}
 				else {
 			if(grupoPorA.getSelection().getActionCommand() == "Mala") {
@@ -1238,11 +1511,11 @@ public class Ventana {
 //				label_Res_POR.setText("NO SATISFACTORIO");
 //				label_Res_POR.setBackground(Color.RED);
 				por++;
-			}
+			}*/
 			panelPortabilidad.setVisible(false);
 			panelResultado.setVisible(true);
 			//System.out.println(fun);
-			}
+			//}
 				//asigno el resultado final
 				if(fun>0) {
 					lblRes_FUN.setText("NO SATISFACTORIO");
@@ -1280,7 +1553,7 @@ public class Ventana {
 		JButton btn_Cancelar_6 = new JButton("Cancelar");
 		btn_Cancelar_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
@@ -1303,8 +1576,8 @@ public class Ventana {
 		JButton btn_Atras_6 = new JButton("Atras");
 		btn_Atras_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				panelUsabilidad.setVisible(true);
-//				panelPortabilidad.setVisible(false);
+				panelUsabilidad.setVisible(true);
+				panelPortabilidad.setVisible(false);
 //				label_Res_USA.setText("SATISFACTORIO");
 //				label_Res_USA.setBackground(Color.GREEN);
 				usa = 0;
@@ -1331,6 +1604,26 @@ public class Ventana {
 		separator_11.setBackground(Color.BLACK);
 		separator_11.setBounds(0, 628, 1274, 2);
 		panelPortabilidad.add(separator_11);
+		
+		JLabel lblcantidadDeSistemas = new JLabel("<html><body>Cantidad de Sistemas operativos en los cuales es compatible</body><html>");
+		lblcantidadDeSistemas.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblcantidadDeSistemas.setBounds(110, 352, 405, 57);
+		panelPortabilidad.add(lblcantidadDeSistemas);
+		
+		txt_6A = new JTextField(10);
+		txt_6A.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_6A.setBounds(293, 420, 55, 20);
+		panelPortabilidad.add(txt_6A);
+		
+		JLabel lblcantidadDePasos = new JLabel("<html><body>Cantidad de pasos necesarios para la instalaci\u00F3n</body><html>");
+		lblcantidadDePasos.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblcantidadDePasos.setBounds(780, 352, 405, 57);
+		panelPortabilidad.add(lblcantidadDePasos);
+		
+		txt_6B = new JTextField(10);
+		txt_6B.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_6B.setBounds(963, 420, 55, 20);
+		panelPortabilidad.add(txt_6B);
 		
 		//RESULTADO
 		//RESULTADO
