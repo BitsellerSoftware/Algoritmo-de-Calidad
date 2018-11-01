@@ -336,7 +336,7 @@ public class Ventana {
 					fun++;
 				}
 				/*if(grupoFunA.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
 				}
 				if(grupoFunA.getSelection().getActionCommand() == "Mala") {
 //					lblRes_FUN.setText("NO SATISFACTORIO");
@@ -363,7 +363,7 @@ public class Ventana {
 		JButton btnCancelar1A = new JButton("Cancelar");
 		btnCancelar1A.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 				panel_Inicio.setVisible(true);
 				panelFuncionalidad.setVisible(false);}
@@ -395,7 +395,7 @@ public class Ventana {
 		labelEficiencia.setBackground(Color.WHITE);
 		panelEficiencia.add(labelEficiencia);
 		
-		JLabel labelDescEficiencia_A = new JLabel("Utilizaci髇 de recursos");
+		JLabel labelDescEficiencia_A = new JLabel("Utilizaci贸n de recursos");
 		labelDescEficiencia_A.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		labelDescEficiencia_A.setHorizontalAlignment(SwingConstants.CENTER);
 		labelDescEficiencia_A.setBounds(10, 106, 634, 119);
@@ -518,7 +518,7 @@ public class Ventana {
 				}
 				
 					/*if(grupoEfiA.isSelected(null) || grupoEfiB.isSelected(null)){
-						JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
+						JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
 					}
 					else {
 				if(grupoEfiA.getSelection().getActionCommand() == "Mala") {
@@ -544,7 +544,7 @@ public class Ventana {
 		JButton btnCancelar_2A = new JButton("Cancelar");
 		btnCancelar_2A.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
@@ -750,11 +750,10 @@ public class Ventana {
 					fia++;
 				}
 				if(Integer.parseInt(txt_2B.getText()) == 0) {
-					JOptionPane.showMessageDialog(panelFiabilidad,"entre al segundo!");
 					fia++;
 				}
 				/*if(grupoFiaA.isSelected(null) || grupoFiaB.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
 				}
 				else {
 			if(grupoFiaA.getSelection().getActionCommand() == "Mala") {
@@ -774,7 +773,6 @@ public class Ventana {
 			/*System.out.println("al final de la tercera funcionalidad =" +fun);
 			System.out.println("al final de la tercera eficiencia =" +efi);
 			System.out.println("al final de la tercera fiabilidad =" + fia);*/
-			JOptionPane.showMessageDialog(panelFiabilidad,"al final de la tercera fiabilidad =" + fia);
 				
 			}
 			}
@@ -785,7 +783,7 @@ public class Ventana {
 		JButton btnCancelar_3 = new JButton("Cancelar");
 		btnCancelar_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					label_Res_EFI.setText("SATISFACTORIO");
 //					label_Res_EFI.setBackground(Color.GREEN);
@@ -1007,7 +1005,7 @@ public class Ventana {
 		JButton btnCancelar_4 = new JButton("Cancelar");
 		btnCancelar_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
@@ -1053,7 +1051,7 @@ public class Ventana {
 				}
 				
 				/*if(grupoManA.isSelected(null) || grupoManB.isSelected(null) || grupoManC.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
 				}
 				else {
 			if(grupoManA.getSelection().getActionCommand() == "Mala") {
@@ -1333,7 +1331,7 @@ public class Ventana {
 		JButton btn_Cancelar_5 = new JButton("Cancelar");
 		btn_Cancelar_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
@@ -1379,7 +1377,7 @@ public class Ventana {
 					usa++;
 				}
 				/*if(grupoUsaA.isSelected(null) || grupoUsaB.isSelected(null) || grupoUsaC.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
 				}
 				else {
 			if(grupoUsaA.getSelection().getActionCommand() == "Mala") {
@@ -1537,7 +1535,7 @@ public class Ventana {
 				}
 				
 			/*	if(grupoPorA.isSelected(null) || grupoPorB.isSelected(null)){
-					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci髇");
+					JOptionPane.showMessageDialog(panelFuncionalidad, "seleccion una opci贸n");
 				}
 				else {
 			if(grupoPorA.getSelection().getActionCommand() == "Mala") {
@@ -1592,7 +1590,7 @@ public class Ventana {
 		JButton btn_Cancelar_6 = new JButton("Cancelar");
 		btn_Cancelar_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				msg = JOptionPane.showConfirmDialog(frame, "縎eguro que desea abortar la operaci髇?", "Cancelar", 2);
+				msg = JOptionPane.showConfirmDialog(frame, "驴Seguro que desea abortar la operaci贸n?", "Cancelar", 2);
 				if(msg == JOptionPane.YES_OPTION) {
 //					lblRes_FUN.setText("SATISFACTORIO");
 //					lblRes_FUN.setBackground(Color.GREEN);
