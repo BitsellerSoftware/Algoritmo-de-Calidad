@@ -42,19 +42,19 @@ import java.awt.event.KeyEvent;
 public class Ventana {
 
 	private JFrame frame;
-	private ButtonGroup grupoFunA = new ButtonGroup();
-	private ButtonGroup grupoEfiA = new ButtonGroup();
-	private ButtonGroup grupoEfiB = new ButtonGroup();
-	private ButtonGroup grupoFiaA = new ButtonGroup();
-	private ButtonGroup grupoFiaB = new ButtonGroup();
-	private ButtonGroup grupoManA = new ButtonGroup();
-	private ButtonGroup grupoManB = new ButtonGroup();
-	private ButtonGroup grupoManC = new ButtonGroup();
-	private ButtonGroup grupoUsaA = new ButtonGroup();
-	private ButtonGroup grupoUsaB = new ButtonGroup();
-	private ButtonGroup grupoUsaC = new ButtonGroup();
-	private ButtonGroup grupoPorA = new ButtonGroup();
-	private ButtonGroup grupoPorB = new ButtonGroup();
+//	private ButtonGroup grupoFunA = new ButtonGroup();
+//	private ButtonGroup grupoEfiA = new ButtonGroup();
+//	private ButtonGroup grupoEfiB = new ButtonGroup();
+//	private ButtonGroup grupoFiaA = new ButtonGroup();
+//	private ButtonGroup grupoFiaB = new ButtonGroup();
+//	private ButtonGroup grupoManA = new ButtonGroup();
+//	private ButtonGroup grupoManB = new ButtonGroup();
+//	private ButtonGroup grupoManC = new ButtonGroup();
+//	private ButtonGroup grupoUsaA = new ButtonGroup();
+//	private ButtonGroup grupoUsaB = new ButtonGroup();
+//	private ButtonGroup grupoUsaC = new ButtonGroup();
+//	private ButtonGroup grupoPorA = new ButtonGroup();
+//	private ButtonGroup grupoPorB = new ButtonGroup();
 	private ButtonGroup grupoFia_A = new ButtonGroup();
 	private ButtonGroup grupoFia_B = new ButtonGroup();
 	private ButtonGroup grupoUsa_A1 = new ButtonGroup();
@@ -742,12 +742,15 @@ public class Ventana {
 		JButton btnSiguiente_3 = new JButton("Siguiente");
 		btnSiguiente_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txt_3A.getText().isEmpty() || txt_3B.getText().isEmpty())
+				if(txt_3A.getText().isEmpty() || txt_3B.getText().isEmpty() || grupoFia_A.isSelected(null) || grupoFia_B.isSelected(null))
 					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
-				if(Integer.parseInt(txt_3A.getText()) <= 100 || grupoFia_A.getSelection().getActionCommand() == "Mala") {
+				else {
+					if(Integer.parseInt(txt_3A.getText()) == 0 ) {
+					JOptionPane.showMessageDialog(panelFiabilidad,"entre al primero!");
 					fia++;
 				}
 				if(Integer.parseInt(txt_2B.getText()) == 0) {
+					JOptionPane.showMessageDialog(panelFiabilidad,"entre al segundo!");
 					fia++;
 				}
 				/*if(grupoFiaA.isSelected(null) || grupoFiaB.isSelected(null)){
@@ -765,14 +768,16 @@ public class Ventana {
 //				label_Res_FIA.setBackground(Color.red);
 				fia++;
 			}*/
+			
 			panelMantenibilidad.setVisible(true);
 			panelFiabilidad.setVisible(false);
 			/*System.out.println("al final de la tercera funcionalidad =" +fun);
 			System.out.println("al final de la tercera eficiencia =" +efi);
 			System.out.println("al final de la tercera fiabilidad =" + fia);*/
+			JOptionPane.showMessageDialog(panelFiabilidad,"al final de la tercera fiabilidad =" + fia);
 				
 			}
-		//	}
+			}
 		});
 		btnSiguiente_3.setBounds(1107, 641, 157, 39);
 		panelFiabilidad.add(btnSiguiente_3);
@@ -1036,7 +1041,8 @@ public class Ventana {
 			public void actionPerformed(ActionEvent e) {
 				if(txt_4A.getText().isEmpty() || txt_4B.getText().isEmpty() || txt_4C.getText().isEmpty())
 					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
-				if(Integer.parseInt(txt_4A.getText()) <= 20){
+				else {
+					if(Integer.parseInt(txt_4A.getText()) <= 20){
 					man++;
 				}
 				if(Integer.parseInt(txt_4B.getText()) >= 21) {
@@ -1067,7 +1073,7 @@ public class Ventana {
 			}*/
 			panelMantenibilidad.setVisible(false);
 			panelUsabilidad.setVisible(true);
-			//}
+				}
 			}
 		});
 		BtnSiguiente_4.setBounds(1107, 641, 157, 39);
@@ -1316,6 +1322,8 @@ public class Ventana {
 		panelUsabilidad.add(lbllaInstalacionEsta);
 		
 		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1.addItem("SI.");
+		comboBox_1.addItem("NO.");
 		comboBox_1.setSelectedIndex(-1);
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboBox_1.setBounds(1018, 386, 69, 33);
@@ -1359,7 +1367,7 @@ public class Ventana {
 		JButton btn_Sigueinte_5 = new JButton("Siguiente");
 		btn_Sigueinte_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(grupoUsa_A1.isSelected(null) || grupoUsa_A2.isSelected(null) || grupoUsa_A3.isSelected(null) || comboBox.getSelectedIndex() < 0 || txt_5.getText().isEmpty())
+				if(grupoUsa_A1.isSelected(null) || grupoUsa_A2.isSelected(null) || grupoUsa_A3.isSelected(null) || comboBox.getSelectedIndex() < 0 || txt_5.getText().isEmpty() || comboBox_1.getSelectedIndex() < 0)
 					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
 				else {if(grupoUsa_A1.getSelection().getActionCommand() == "Mala" && grupoUsa_A2.getSelection().getActionCommand() == "Mala"){
 					usa++;
@@ -1521,7 +1529,7 @@ public class Ventana {
 			public void actionPerformed(ActionEvent e) {
 				if(txt_6A.getText().isEmpty() || txt_6B.getText().isEmpty())
 					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
-				if(Integer.parseInt(txt_6A.getText()) == 1) {
+				else{if(Integer.parseInt(txt_6A.getText()) == 1) {
 					por++;
 				}
 				if(Integer.parseInt(txt_2B.getText()) > 7) {
@@ -1575,6 +1583,7 @@ public class Ventana {
 					label_Res_FINAL.setText("NO SATISFACTORIO");
 					label_Res_FINAL.setBackground(new Color(220, 20, 60));
 				}
+			}
 			}
 		});
 		btn_Siguiente_6.setBounds(1107, 641, 157, 39);
