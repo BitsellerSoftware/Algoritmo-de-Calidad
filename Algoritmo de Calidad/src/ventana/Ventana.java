@@ -33,6 +33,8 @@ import javax.swing.SpringLayout;
 import javax.swing.JToggleButton;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.text.PlainDocument;
+
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -69,7 +71,7 @@ public class Ventana {
 	static int usa = 0;
 	static int por = 0;
 	int msg;
-	private JTextField textField_1A;
+	private JTextField txt_1A;
 	private JTextField txt_2A;
 	private JTextField txt_2B;
 	private JTextField txt_3A;
@@ -301,8 +303,10 @@ public class Ventana {
 		rdbtnMala1A.setActionCommand("Mala");
 		grupoFunA.add(rdbtnMala1A);
 		*/
-		textField_1A = new JTextField(3);
-		textField_1A.addKeyListener(new KeyAdapter() {
+		
+
+		txt_1A = new JTextField(3);
+		/*textField_1A.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
 				char c = arg0.getKeyChar();
@@ -310,20 +314,25 @@ public class Ventana {
 					arg0.consume();
 				}
 			}
-		});
-		textField_1A.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_1A.setBounds(600, 412, 55, 20);
-		panelFuncionalidad.add(textField_1A);
-		textField_1A.setColumns(10);
+		}); */
+		txt_1A.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txt_1A.setBounds(600, 412, 55, 20);
+		panelFuncionalidad.add(txt_1A);
+		txt_1A.setColumns(10);
+		
+	     PlainDocument doc1A = (PlainDocument) txt_1A.getDocument();
+	     doc1A.setDocumentFilter(new IntFilterPorcentaje());
+	     
+	     
 		
 		JButton btnSiguiente1A = new JButton("Siguiente");
 		btnSiguiente1A.setBounds(1100, 641, 164, 39);
 		panelFuncionalidad.add(btnSiguiente1A);
 		btnSiguiente1A.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(textField_1A.getText().isEmpty())
+				if(txt_1A.getText().isEmpty())
 					JOptionPane.showMessageDialog(panelFuncionalidad, "Ingrese un valor");
-				if(Integer.parseInt(textField_1A.getText()) == 100) {
+				if(Integer.parseInt(txt_1A.getText()) == 100) {
 					fun++;
 				}
 				/*if(grupoFunA.isSelected(null)){
@@ -467,6 +476,9 @@ public class Ventana {
 		txt_2A.setBounds(274, 354, 55, 20);
 		panelEficiencia.add(txt_2A);
 		
+	     PlainDocument doc2A = (PlainDocument) txt_2A.getDocument();
+	     doc2A.setDocumentFilter(new IntFilterPorcentaje());
+		
 		JLabel lbltiempoEnSegundos = new JLabel("<html><body>Tiempo en segundos que demora en  informar el resultado</body><html>");
 		lbltiempoEnSegundos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lbltiempoEnSegundos.setBounds(785, 305, 405, 57);
@@ -477,6 +489,8 @@ public class Ventana {
 		txt_2B.setBounds(968, 373, 55, 20);
 		panelEficiencia.add(txt_2B);
 		
+	     PlainDocument doc2B = (PlainDocument) txt_2B.getDocument();
+	     doc2B.setDocumentFilter(new IntFilterPositivos());
 		
 		JButton btnAtras_2A_ = new JButton("Atras");
 		btnAtras_2A_.addActionListener(new ActionListener() {
@@ -664,6 +678,9 @@ public class Ventana {
 		txt_3A.setBounds(321, 411, 55, 20);
 		panelFiabilidad.add(txt_3A);
 		
+	     PlainDocument doc3A = (PlainDocument) txt_3A.getDocument();
+	     doc3A.setDocumentFilter(new IntFilterPorcentaje());
+		
 		JLabel lblporcentajeDeVeces = new JLabel("<html><body>Porcentaje de veces en las que reanuda sus actividades luego producirse una falla</body><html>");
 		lblporcentajeDeVeces.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblporcentajeDeVeces.setBounds(754, 343, 405, 57);
@@ -673,6 +690,9 @@ public class Ventana {
 		txt_3B.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txt_3B.setBounds(937, 411, 55, 20);
 		panelFiabilidad.add(txt_3B);
+		
+	     PlainDocument doc3B = (PlainDocument) txt_3B.getDocument();
+	     doc3B.setDocumentFilter(new IntFilterPorcentaje());
 		
 		JLabel lblrealizaUnLog = new JLabel("<html><body>\u00BFRealiza un log de actividades en el sistema?</body><html>");
 		lblrealizaUnLog.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -945,6 +965,9 @@ public class Ventana {
 		txt_4A.setBounds(193, 408, 55, 20);
 		panelMantenibilidad.add(txt_4A);
 		
+	     PlainDocument doc4A = (PlainDocument) txt_4A.getDocument();
+	     doc4A.setDocumentFilter(new IntFilterPorcentaje());
+		
 		JLabel lblcomplejidadCiclomatica = new JLabel("<html><body>Complejidad Ciclomatica</body><html>");
 		lblcomplejidadCiclomatica.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblcomplejidadCiclomatica.setBounds(437, 340, 405, 57);
@@ -955,6 +978,9 @@ public class Ventana {
 		txt_4B.setBounds(620, 408, 55, 20);
 		panelMantenibilidad.add(txt_4B);
 		
+	     PlainDocument doc4B = (PlainDocument) txt_4B.getDocument();
+	     doc4B.setDocumentFilter(new IntFilterPositivos());
+		
 		JLabel lblcantidadDeFallas = new JLabel("<html><body>Cantidad de fallas por prueba</body><html>");
 		lblcantidadDeFallas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblcantidadDeFallas.setBounds(863, 340, 405, 57);
@@ -964,6 +990,9 @@ public class Ventana {
 		txt_4C.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txt_4C.setBounds(1046, 408, 55, 20);
 		panelMantenibilidad.add(txt_4C);
+		
+	     PlainDocument doc4C = (PlainDocument) txt_4C.getDocument();
+	     doc4C.setDocumentFilter(new IntFilterPositivos());
 		
 		JLabel lblporcentajeDeComentarios = new JLabel("<html><body>Porcentaje de comentarios en el codigo</body><html>");
 		lblporcentajeDeComentarios.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -1219,6 +1248,9 @@ public class Ventana {
 		txt_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txt_5.setBounds(1018, 500, 55, 20);
 		panelUsabilidad.add(txt_5);
+		
+	     PlainDocument doc5 = (PlainDocument) txt_5.getDocument();
+	     doc5.setDocumentFilter(new IntFilterPositivos());
 		
 		JLabel lblposeeAyudaContextual = new JLabel("<html><body>\u00BFPosee ayuda contextual sobre men\u00FAs y botones de acci\u00F3n?</body><html>");
 		lblposeeAyudaContextual.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -1613,6 +1645,9 @@ public class Ventana {
 		txt_6A.setBounds(293, 420, 55, 20);
 		panelPortabilidad.add(txt_6A);
 		
+	     PlainDocument doc6A = (PlainDocument) txt_6A.getDocument();
+	     doc6A.setDocumentFilter(new IntFilterPositivos());
+		
 		JLabel lblcantidadDePasos = new JLabel("<html><body>Cantidad de pasos necesarios para la instalaci\u00F3n</body><html>");
 		lblcantidadDePasos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblcantidadDePasos.setBounds(780, 352, 405, 57);
@@ -1622,6 +1657,9 @@ public class Ventana {
 		txt_6B.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txt_6B.setBounds(963, 420, 55, 20);
 		panelPortabilidad.add(txt_6B);
+		
+	     PlainDocument doc6B = (PlainDocument) txt_6B.getDocument();
+	     doc6B.setDocumentFilter(new IntFilterPositivos());
 		
 		//RESULTADO
 		//RESULTADO
